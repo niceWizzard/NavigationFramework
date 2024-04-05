@@ -7,7 +7,7 @@ import java.util.*;
 
 
 /** Makes navigating between different panels easier.
- *
+ *  DO NOT SET the layoutManager of this class!
  */
 public class NavigationPanel extends JPanel  {
 
@@ -24,11 +24,14 @@ public class NavigationPanel extends JPanel  {
     }
 
 
-    private void setActiveRoute(NavRoute newRoute) {
+
+
+    private void setActiveRoute(NavRoute newRoute, Object... data) {
         if(activeRoute != null) {
             activeRoute.component().onNavigationExit(newRoute.route());
         }
         activeRoute = newRoute;
+        activeRoute.component().onNavigationEnter(data);
         cardLayout.show(this, newRoute.route());
     }
 
@@ -52,12 +55,12 @@ public class NavigationPanel extends JPanel  {
     /** Shows the panel to the specific route.
      * @param route the route to switch
      */
-    public void navigateTo(String route) {
+    public void navigateTo(String route, Object... data) {
         if(Objects.equals(activeRoute.route(), route)) {
             return;
         }
         var componentClass = routeMap.get(route);
-        setActiveRoute(new NavRoute(componentClass, route));
+        setActiveRoute(new NavRoute(componentClass, route), data);
 
     }
 

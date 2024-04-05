@@ -28,15 +28,16 @@ var nav = new NavigationPanel(new NavRoute[] {
 
 nav.navigateTo("page2");
 nav.navigateTo("page1");
-nav.navigateTo("nonexistentpage"); // Does nothing.
 
+nav.navigateTo("nonexistentpage"); // Does nothing.
+nav.navigateTo("page3", someData); // Pass data to the route page!
 
 class Page1 extends Routeable {
     public Page1() {
         add(new JLabel("Page 1"));
     }
     @Override
-    public void onNavigationEnter() {
+    public void onNavigationEnter(Object... data) {
 
     }
     @Override
@@ -49,7 +50,7 @@ class Page2 extends Routeable {
         add(new JLabel("Page 2"));
     }
     @Override
-    public void onNavigationEnter() {
+    public void onNavigationEnter(Object... data) {
 
     }
     @Override
