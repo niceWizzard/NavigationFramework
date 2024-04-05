@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="navigation_panel">
+    <output-path>$PROJECT_DIR$/out/artifacts/navigation_panel</output-path>
+    <root id="archive" name="navigation_panel.jar">
+      <element id="dir-copy" path="$PROJECT_DIR$/src/main/java/org/nice/navigation" />
+    </root>
+  </artifact>
+</component>
