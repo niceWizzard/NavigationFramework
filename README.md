@@ -2,7 +2,7 @@
 
 ## Installation
 
-1. Download the NavigationFramework.jar
+1. Download the [NavigationFramework.jar](https://github.com/niceWizzard/NavigationFramework/blob/master/NavigationFramework.jar)
 2. Add it as a library
 3. Import the org.nice.navigation.\*!
 4. Enjoy!
