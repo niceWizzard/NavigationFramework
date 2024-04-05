@@ -6,23 +6,29 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 
+/** Makes navigating between different panels easier.
+ *
+ */
 public class NavigationPanel extends JPanel  {
 
     private final CardLayout cardLayout = new CardLayout();
-    private Map<String, Routeable> routeMap = new HashMap<>();
+    private final Map<String, Routeable> routeMap = new HashMap<>();
 
     private NavRoute activeRoute;
-    private Routeable activeRouteable;
 
+    /**
+     * @return the current active route.
+     */
     public NavRoute getActiveRoute() {
         return activeRoute;
     }
+
+
     private void setActiveRoute(NavRoute newRoute) {
-        if(activeRouteable != null) {
-            activeRouteable.onNavigationExit(newRoute.route());
+        if(activeRoute != null) {
+            activeRoute.component().onNavigationExit(newRoute.route());
         }
         activeRoute = newRoute;
-        activeRouteable = newRoute.component();
         cardLayout.show(this, newRoute.route());
     }
 
@@ -36,11 +42,16 @@ public class NavigationPanel extends JPanel  {
     }
 
 
+    /** Adds a new route-component pair
+     */
     public void addRoute(String route, Routeable component) {
-
         routeMap.put(route, component);
+        add(component, route);
     }
 
+    /** Shows the panel to the specific route.
+     * @param route the route to switch
+     */
     public void navigateTo(String route) {
         if(Objects.equals(activeRoute.route(), route)) {
             return;
