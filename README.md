@@ -10,6 +10,9 @@
 ## Code Example
 
 ```java
+import org.nice.navigation.*;
+
+
 var nav = new NavigationPanel();
 
 nav.addRoute("page1", new Page1());
