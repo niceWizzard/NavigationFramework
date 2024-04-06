@@ -23,7 +23,7 @@ public class NavigationPanel extends JPanel  {
         return activeRoute;
     }
 
-
+    public final Event<NavRoute> onNavigationChange = new Event<>();
 
 
     private void setActiveRoute(NavRoute newRoute, Object... data) {
@@ -61,7 +61,7 @@ public class NavigationPanel extends JPanel  {
         }
         var componentClass = routeMap.get(route);
         setActiveRoute(new NavRoute(componentClass, route), data);
-
+        onNavigationChange.invoke(activeRoute);
     }
 
     private void initialize(NavRoute... initRoute) {
